@@ -1,0 +1,19 @@
+{
+  "name": "pruebatecnicaangular",
+  "version": "1.0.0",
+  "description": "Prueba tecnica Angular Full stack developers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server" : "nodemon index.js",
+    "start" : "concurrently \"npm run server\"  \"cd client && ng serve --open\" "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.13",
+    "nodemon": "^2.0.7"
+  }
+}
