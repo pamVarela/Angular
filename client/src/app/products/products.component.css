@@ -1,0 +1,58 @@
+table {
+  width: 100%;
+}
+
+.container {
+  width: 95%;
+  padding: 10px;
+  margin: 10px;
+}
+
+.yellow-icon {
+  color: yellow;
+  font-size: 13px;
+}
+
+.red-icon {
+  color: red;
+  font-size: 13px;
+}
+
+.green-icon {
+  color: green;
+  font-size: 13px;
+}
+
+.add-button {
+  background-color: #00a8e8;
+  margin: 16px;
+  float: right;
+}
+
+.font-size-cell {
+  font-size: medium;
+}
+
+.img-default {
+  width: 6rem;
+  height: 65px;
+  border-radius: 15px;
+  vertical-align: top;
+  display: inline-block;
+  padding: 10px;
+}
+
+.text-img {
+  display: inline-block;
+  padding: 12px;
+}
+
+.custom-search {
+  float: right;
+  border-style: solid;
+  width: 24rem;
+  height: 33px;
+  border-radius: 3px;
+  position: relative;
+  top: 16px;
+}
