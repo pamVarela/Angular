@@ -1,39 +1,60 @@
-import { Component, OnInit } from '@angular/core';
-import { faPlus,faPencilAlt} from '@fortawesome/free-solid-svg-icons';
-import {  faTrashAlt  } from '@fortawesome/free-regular-svg-icons';
-import {MatTableDataSource} from '@angular/material/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { ProductService } from 'src/app/services/product.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddProductComponent } from './add-product/add-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
+import { Product } from '../../models/Product';
+import { DeleteProductComponent } from './delete-product/delete-product.component';
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+
   faPlus = faPlus; faTrash = faTrashAlt; faPencil = faPencilAlt;
+
+  dataSource = this.productService.getAll();
+  
+  @ViewChild(MatTable) table: MatTable<any>;
+
+  constructor(
+    public dialog: MatDialog,
+    private productService: ProductService) { }
 
   columns: string[] = ['Nombre', 'Categoría', 'Precio', 'Cantidad', 'Inventario', 'Acción'];
 
-  dataSource = new MatTableDataSource([
-    {position: 'Nike', name: 'Hydrogen', weight: 1.0079, symbol: 1},
-    {position: 2, name: 'Helium', weight: 4.0026, symbol: 2},
-    {position: 3, name: 'Lithium', weight: 6.941, symbol: 0},
-    {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 0},
-    {position: 5, name: 'Boron', weight: 10.811, symbol: 1},
-    {position: 6, name: 'Carbon', weight: 12.0107, symbol: 2},
-    {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 0},
-    {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 2},
-    {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 1},
-    {position: 10, name: 'Neon', weight: 20.1797, symbol: 0},
-    
-  ]);
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    //this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-
-  constructor() { }
 
   ngOnInit(): void {
   }
+
+  addNewProduct() {
+    this.dialog.open(AddProductComponent, {
+      width: '500px',
+    });
+  }
+
+  editProduct(product: Product) {
+    this.dialog.open(EditProductComponent, {
+      width: '500px',
+      data: { product: product }
+    });
+  }
+
+  deleteProduct(product: Product) {
+    this.dialog.open(DeleteProductComponent, {
+      width: '500px',
+      data: { product: product }
+    });
+  }
+
 
 }

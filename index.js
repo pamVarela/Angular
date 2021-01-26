@@ -3,10 +3,7 @@ const mongoose = require("mongoose");
 const keys = require("./config/keys");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 const PORT = 3000;
-
-require("./models/Product");
 
 const parametersConnection = {
   useNewUrlParser: true,
@@ -23,10 +20,9 @@ mongoose.connect(keys.mongoURI, parametersConnection)
     process.exit();
   });
 
-
 const app = express();
 var corsOptions = {
-  origin: "http://localhost:3001",
+  origin: "*",
 };
 
 app.use(cors(corsOptions));
@@ -41,6 +37,6 @@ app.get("/", function (req, res) {
 require("./routes/product.routes")(app);
 
 //calling to run the server
-app.listen(PORT, ()  => {
+app.listen(PORT, () => {
   console.log("Node server is running in port: " + PORT);
 });

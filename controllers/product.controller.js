@@ -1,7 +1,8 @@
 const Product = require("../models/Product");
 
+//Request POST to create Product
 exports.create = function (req, res) {
-  console.log(req.body);
+  
   if (!req.body.name) {
     res.status(400).send({ message: "Product cannot be empty" });
     return;
@@ -9,7 +10,7 @@ exports.create = function (req, res) {
 
   const product = new Product({
     name: req.body.name,
-    materials: req.body.material,
+    materials: req.body.materials,
     category: req.body.category,
     price: req.body.price,
     quantity: req.body.quantity,
@@ -27,6 +28,7 @@ exports.create = function (req, res) {
     });
 };
 
+//Request GET to find all the Products
 exports.findAllProducts = (req, res) => {
   Product.find()
     .then((data) => {
@@ -39,6 +41,7 @@ exports.findAllProducts = (req, res) => {
     });
 };
 
+//Request GET to find all the Products by name or id
 exports.findAllProductsByNameAndId = (req, res) => {
   Product.find()
     .select("id name")
@@ -52,6 +55,7 @@ exports.findAllProductsByNameAndId = (req, res) => {
     });
 };
 
+//Request PUT to update a Product
 exports.update = (req, res) => {
   if (!req.body) {
     return res.status(400).send({ message: "Data cannot be empty to update" });
@@ -59,7 +63,7 @@ exports.update = (req, res) => {
 
   const id = req.params.id;
 
-  Product.findByIdAndUpdate(id, req.bod, { useFindAndModify: true })
+  Product.findByIdAndUpdate(id, req.body, { useFindAndModify: true })
     .then((data) => {
       if (!data) {
         res.status(400).send({
@@ -76,6 +80,7 @@ exports.update = (req, res) => {
     });
 };
 
+//Request DELETE to delete a Product
 exports.delete = (req, res) => {
   console.log(req.params)
   const id = req.params.id;

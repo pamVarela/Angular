@@ -14,9 +14,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule} from '@angular/material/form-field'; 
+import { MatSelectModule} from '@angular/material/select'; 
 import { MatInputModule} from '@angular/material/input';
+import { MatDialogModule} from '@angular/material/dialog'; 
 import { AddProductComponent } from './components/products/add-product/add-product.component';
 import { EditProductComponent } from './components/products/edit-product/edit-product.component';
+import { DeleteProductComponent } from './components/products/delete-product/delete-product.component';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxUiLoaderModule } from "ngx-ui-loader";
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/products', pathMatch: 'full'},
@@ -28,7 +34,8 @@ const routes: Routes = [
     AppComponent,
     ProductsComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    DeleteProductComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +52,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
+    MatSelectModule,
+    ToastrModule.forRoot(),
+    NgxUiLoaderModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

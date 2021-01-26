@@ -1,1 +1,41 @@
-<p>add-product works!</p>
+<h2 mat-dialog-title>Agregar producto</h2>
+<mat-dialog-content [formGroup]="formAddProduct">
+    <div class="container">
+        <div class="material-textfield">
+            <input type="text" formControlName="name">
+            <label>Nombre</label>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="material-textfield">
+            <input type="text" formControlName="materials">
+            <label>Materiales</label>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="material-textfield">
+            <input type="text" formControlName="category">
+            <label>Categoría</label>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="material-textfield">
+            <input type="number" min="0" formControlName="price">
+            <label>Precio</label>
+        </div>
+    </div>
+    <div class="container">
+        <div class="material-textfield">
+            <input type="number" min="0" formControlName="quantity">
+            <label>Cantidad</label>
+        </div>
+    </div>
+</mat-dialog-content>
+<div class="modal-footer">
+    <button mat-raised-button  color="primary" class="add-button" (click)="add()" >Crear</button>
+    <button mat-raised-button mat-dialog-close color="primary" class="close-button">Cancelar</button>
+</div>
+
