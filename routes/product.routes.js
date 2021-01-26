@@ -5,7 +5,6 @@ module.exports = app => {
 
     router.post('/add', products.create);
     router.get('/getAll', products.findAllProducts);
-    router.get('/getAllByNameAndId', products.findAllProductsByNameAndId);
     router.put('/:id', products.update);
     router.delete('/:id', products.delete);
 

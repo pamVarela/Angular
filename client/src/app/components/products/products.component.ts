@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faPlus, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/services/product.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddProductComponent } from './add-product/add-product.component';
@@ -17,23 +17,26 @@ import { DeleteProductComponent } from './delete-product/delete-product.componen
 export class ProductsComponent implements OnInit {
 
   faPlus = faPlus; faTrash = faTrashAlt; faPencil = faPencilAlt;
-
-  dataSource = this.productService.getAll();
+  dataSource;
   
-  @ViewChild(MatTable) table: MatTable<any>;
-
   constructor(
     public dialog: MatDialog,
     private productService: ProductService) { }
 
   columns: string[] = ['Nombre', 'Categoría', 'Precio', 'Cantidad', 'Inventario', 'Acción'];
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    //this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue;
   }
-
+  
   ngOnInit(): void {
+    this.productService.getAll()
+    .subscribe(response => {
+      this.dataSource = new MatTableDataSource(response);
+      this.dataSource.filterPredicate = function(data, filter: string): boolean {
+        return data.name.toLowerCase().includes(filter) ||  data.id.toLowerCase().includes(filter);
+      };
+    });
   }
 
   addNewProduct() {

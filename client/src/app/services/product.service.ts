@@ -18,11 +18,7 @@ export class ProductService {
   getAll(): Observable<any> {
     return this.http.get(baseUrl + '/getAll');
   }
-
-  getAllByNameAndId(): Observable<any> {
-    return this.http.get(baseUrl + '/getAllByNameAndId');
-  }
-
+  
   update(id, data):  Observable<any> { 
     return this.http.put(`${baseUrl}/${id}`, data);
   }

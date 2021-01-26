@@ -41,20 +41,6 @@ exports.findAllProducts = (req, res) => {
     });
 };
 
-//Request GET to find all the Products by name or id
-exports.findAllProductsByNameAndId = (req, res) => {
-  Product.find()
-    .select("id name")
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res
-        .status(500)
-        .send({ message: err.message || "Error occurred while retrieving..." });
-    });
-};
-
 //Request PUT to update a Product
 exports.update = (req, res) => {
   if (!req.body) {
@@ -82,7 +68,6 @@ exports.update = (req, res) => {
 
 //Request DELETE to delete a Product
 exports.delete = (req, res) => {
-  console.log(req.params)
   const id = req.params.id;
 
   Product.findByIdAndRemove(id)

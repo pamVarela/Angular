@@ -4,7 +4,7 @@
         <button mat-raised-button color="primary" class="add-button" (click)="addNewProduct()">
             <fa-icon [icon]="faPlus"></fa-icon> Añadir producto
        </button>
-       <input class="custom-search" (keyup)="applyFilter($event)" placeholder=" Buscar productos " #input>
+       <input class="custom-search" (keyup)="applyFilter($event.target.value)" placeholder=" Buscar productos por Nombre o ID " #input>
     </div>
    
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
