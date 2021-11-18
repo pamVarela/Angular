@@ -1,5 +1,5 @@
-# Prueba-Tecnica-Angular
-Este proyecto es una prueba técnica con tecnologías como Angular para la parte del front-end y NodeJS con MongoDB para la parte del back-end, esto con el fin de crear funciones CRUD.
+# Angular
+Se usa Angular para la parte del front-end y NodeJS con MongoDB para la parte del back-end, esto con el fin de crear funciones CRUD.
 
 ## Instalación 
 
